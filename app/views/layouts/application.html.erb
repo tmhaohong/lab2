@@ -6,6 +6,9 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+
+    <%= flash_messages %>
+
   <nav class="navbar navbar-light bg-faded">
 
     <!-- Toggle Button -->
@@ -16,12 +19,22 @@
     <div class="collapse navbar-toggleable-xs" id="nav-content">
       <a class="navbar-brand" href="/"><%= image_tag 'logo-small' %></a>
       <ul class="nav navbar-nav">
+        
+      <% if sign_in? %>
         <li class="nav-item">
+          <%= link_to "Sign Out", signout_path, {class:"nav-item"}  %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+
           <%= link_to "Sign up", signup_path, {class:"nav-item"}  %>
         </li>
         <li class="nav-item">
           <%= link_to "Sign in", login_path, {class:"nav-item"}  %>
         </li>
+      <% end %>
+
+
         <li class="nav-item">
           <a class="nav-link" href="<%= users_path %>">Browse Profiles</a>
         </li>

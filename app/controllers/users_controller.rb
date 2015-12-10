@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:index]
 
   def new
     @user = User.new
   end
 
   def index
-    @users = User.all.shuffle
+
+      @users = User.all.shuffle
+
+
   end
 
   def create
